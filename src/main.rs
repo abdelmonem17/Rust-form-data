@@ -121,7 +121,6 @@ async fn main() -> std::io::Result<()> {
     println!("{:?}", form);
 
     HttpServer::new(move || {
-        println!("gooooooood");
         App::new()
             .service(resource("/test/{id}").route(get().to(upload)))
             .wrap(form.clone())
@@ -136,19 +135,12 @@ async fn main() -> std::io::Result<()> {
     Ok(())
 }
 
-#[actix_web::get("/test1/{id}")]
-pub async fn test1(actix_web::web::Path((id)):actix_web::web::Path<(u32)>) ->HttpResponse
-{
-    println!("get request");
-    HttpResponse::Created().finish()
-//   Ok(  r#"you successfully unsubscribed to subscribe again go to our website"#)
-}
 
 //#[get("/test/{id}")]
 pub async fn test(web::Path((id)):web::Path<(u32)>) ->&'static str
 {
     println!("good");
 
-    r#"you successfully unsubscribed to subscribe again go to our website from form"#
+    r#"you get the api successfully "#
 
 }
